@@ -1,0 +1,12 @@
+#by BradH©
+
+input priceType = PriceType.LAST;
+def period = AggregationPeriod.DAY;
+def LastPrice = close(priceType = priceType);
+input Begin  = 0930;
+input End    = 1600;
+def IsClosed = if SecondsFromTime(End) == 0 and SecondsTillTime(End) == 0 then close(Period = period)[1] else close(Period = period)[1];
+def data = if IsClosed > 0 then IsClosed else Double.NaN;
+def change = (LastPrice - IsClosed) / IsClosed;
+AddLabel(yes, if change < 0 then "DOWN: "  + AsPercent((LastPrice - IsClosed) / IsClosed) + " from previous day's close" else
+"UP: " + AsPercent((LastPrice - IsClosed) / IsClosed) + " from previous day's close", if change < 0 then Color.RED else Color.GREEN);
