@@ -1,3 +1,7 @@
+#-----------------------
+#By BradH©
+#Pre-Market Gap Scanner
+#-----------------------
 input priceType = PriceType.LAST;
 input period = AggregationPeriod.DAY;
 def LastPrice = close(priceType = priceType);
