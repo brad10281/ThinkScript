@@ -1,0 +1,2 @@
+def PurchasePrice = if GetAveragePrice() == 0 then Double.NaN else GetAveragePrice();
+plot PP = PurchasePrice;
